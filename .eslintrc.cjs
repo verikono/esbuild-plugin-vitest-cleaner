@@ -13,7 +13,7 @@ module.exports = {
         '@typescript-eslint'
     ],
     rules: {
-        quotes: [2, 'single']
+        quotes: [2, 'single', {'avoidEscape': true}]
     },
-    ignorePatterns: ['dist/**/*']
+    ignorePatterns: ['dist/**/*', 'node_modules/**/*']
 }

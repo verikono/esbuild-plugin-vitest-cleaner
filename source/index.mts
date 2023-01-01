@@ -1,1 +1,3 @@
-export { vitestCleaner } from './vitest-cleaner.mjs';
+import { vitestCleaner } from './vitest-cleaner.mjs';
+export { vitestCleaner } 
+export default vitestCleaner;

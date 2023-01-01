@@ -7,10 +7,20 @@
   "homepage": "https://github.com/verikono/esbuild-plugin-vitest-cleaner#readme",
   "bugs": { "url": "https://github.com/verikono/esbuild-plugin-vitest-cleaner/issues" },
   "author": "verikono <verikono@philly.town>",
-  "keywords": [ "esbuild", "plugin", "clean", "remove", "import.meta.vitest" ],
-  "repository": { "type": "git", "url": "git+ssh://git@github.com/verikono/esbuild-plugin-vitest-cleaner.git" },
+  "keywords": ["esbuild", "plugin", "clean", "remove", "import.meta.vitest" ],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/verikono/esbuild-plugin-vitest-cleaner.git"
+  },
   "scripts": {
-    "test": "vitest"
+    "prepare": "husky install",
+    "test": "vitest --config=devel/test/vitest.insource.mts",
+    "test:dist": "vitest --config=devel/test/vitest.dist.mts",
+    "build": "tsx devel/build/esbuild.mts",
+    "lint": "eslint source devel --fix"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.47.1",
@@ -19,5 +29,17 @@
     "eslint": "^8.31.0",
     "typescript": "^4.9.4",
     "vitest": "^0.26.2"
-  }
+  },
+  "dependencies": {
+    "husky": "^8.0.2"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/common/index.cjs"
+    }
+  },
+  "main": "dist/common/index.cjs",
+  "types": "dist/types/index.d.ts"
 }

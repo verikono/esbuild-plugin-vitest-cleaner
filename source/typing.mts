@@ -3,7 +3,11 @@ export type VitestCleanerOptions<Opts extends ( 'filter' | 'filter' )> = {
     [P in Extract<Opts, keyof VitestCleanerProps>]?: VitestCleanerProps[P]
 };
 
-type Plugin = unknown;  // accessible by import type { Plugin } from 'esbuild'.
+export interface Plugin {
+    name: string;
+    // accessible by import type { PluginBuild } from 'esbuild'.
+    setup: (build: unknown) => (void | Promise<void>);
+}
 declare function vitestCleaner(options?: VitestCleanerOptions<'filter'>): Plugin;
 export { vitestCleaner };
 export default vitestCleaner;

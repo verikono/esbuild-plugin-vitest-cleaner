@@ -2,13 +2,14 @@
     "compilerOptions": {
         "module": "ES2022",
         "target": "ES2022",
-        "moduleResolution": "Node16",
-        "lib": [ "ES2022" ],
+        "moduleResolution": "NodeNext",
+        "lib": [ "ES2022", "DOM" ],
         "noEmit": true,
         "strict": true,
+        "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "types": [ "vitest/importMeta" ]
     },
-    "files": [".eslintrc.cjs", "esbuild.mts", "vitest.config.mts"],
-    "include": [ "source" ]
+    "include": [ ".eslintrc.cjs", "source", "devel" ],
+    "exclude": [ "node_modules" ]
 }

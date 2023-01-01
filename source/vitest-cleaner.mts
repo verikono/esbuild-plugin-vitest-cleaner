@@ -30,17 +30,28 @@ const vitestCleanerFn = async (props: { path: string } ):Promise<string> => {
     const linebreak = text.indexOf('\\r\\n') === -1 ? '\\n' : '\\r\\n';
     const lines = text.split(new RegExp(linebreak, 'g'));
 
-    return lines.reduce<{ lines: Array<string>; depth: number; }>(({lines, depth}, line ) => {
-        if(depth === -1) {
-            if(line.replace(/ /g, '').includes('if(import.meta.vitest){')) { depth = 0; return { lines, depth }; }
+    const result = lines.reduce<{ lines: Array<string>; depth: number; }>(({lines, depth}, line) => {
+        if(!depth) {
+            const compact = line.replace(/ /g, '');
+            if(compact.includes('if(import.meta.vitest){') && !compact.includes('(\'if(import.meta.vitest)\')')) {
+                depth = 1;
+                return { lines, depth };
+            }
             return { lines: lines.concat([line]), depth };
         }
-        [...line].forEach(char => char === '{' ? ++depth : char === '}' ? --depth : null);
-        if(depth === -1 ) lines = lines.concat([line])
+
+        let retainLine = false;
+        [...line].forEach(char => {
+            if(char === '{'){ ++depth; retainLine = true }
+            if(char === '}'){ --depth; retainLine = true }
+        });
+        if(!depth && !retainLine) lines = lines.concat([line])
+
         return { lines, depth };
-    }, {lines:[], depth: -1})
-    .lines
-    .join(linebreak);
+
+    }, {lines:[], depth: 0}).lines.join(linebreak.replace('\\n', '\n'));
+
+    return result;
 }
 
 
@@ -62,6 +73,7 @@ if(import.meta.vitest) {
             const { fileURLToPath } = await import('node:url');
             const path = fileURLToPath(import.meta.url)
             result = await vitestCleanerFn({path});
+            expect(result).to.be.string;
         });
 
         it('returns a string', () => expect(result).to.be.a.string);
