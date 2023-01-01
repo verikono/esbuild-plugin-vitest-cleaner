@@ -1,6 +1,6 @@
 {
 	"name": "esbuild-plugin-vitest-cleaner",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"type": "module",
 	"license": "MIT",
 	"description": "remove import.meta.vitest from source code prior to esbuild compilation",
