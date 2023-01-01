@@ -1,0 +1,23 @@
+{
+  "name": "esbuild-plugin-vitest-cleaner",
+  "version": "0.5.0",
+  "type": "module",
+  "license": "MIT",
+  "description": "remove import.meta.vitest from source code prior to esbuild compilation",
+  "homepage": "https://github.com/verikono/esbuild-plugin-vitest-cleaner#readme",
+  "bugs": { "url": "https://github.com/verikono/esbuild-plugin-vitest-cleaner/issues" },
+  "author": "verikono <verikono@philly.town>",
+  "keywords": [ "esbuild", "plugin", "clean", "remove", "import.meta.vitest" ],
+  "repository": { "type": "git", "url": "git+ssh://git@github.com/verikono/esbuild-plugin-vitest-cleaner.git" },
+  "scripts": {
+    "test": "vitest"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
+    "esbuild": "^0.16.12",
+    "eslint": "^8.31.0",
+    "typescript": "^4.9.4",
+    "vitest": "^0.26.2"
+  }
+}
