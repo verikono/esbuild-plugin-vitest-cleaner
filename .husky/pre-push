@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npx eslint source --fix && npx eslint devel --fix && npx vitest --config=devel/test/vitest.dist.mts && npx vitest --config=devel/test/vitest.insource.mts
+npx eslint source --fix && npx eslint devel --fix && npx vitest run --config=devel/test/vitest.dist.mts && npx vitest run --config=devel/test/vitest.insource.mts
