@@ -1,5 +1,4 @@
 import { readFile } from 'node:fs/promises';
-import { appendFileSync } from 'node:fs';
 import type { OnLoadArgs, PluginBuild, OnLoadResult, Plugin } from 'esbuild';
 import type { VitestCleanerOptions, VitestCleanerProps } from './typing.mjs';
 
@@ -31,7 +30,7 @@ const vitestCleanerFn = async (props: { path: string } ):Promise<string> => {
     const result = lines.reduce<{ lines: Array<string>; depth: number; }>(({lines, depth}, line) => {
         if(!depth) {
             const compact = line.replace(/ /g, '');
-            if(compact.includes((`if(import__meta__vitest){`.replace(/__/g,  '.')))) {
+            if(compact.includes(('if(import__meta__vitest){'.replace(/__/g,  '.')))) {
                 depth = 1;
                 return { lines, depth };
             }
