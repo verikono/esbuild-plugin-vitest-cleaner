@@ -21,6 +21,7 @@ filtering to specific files simply supplying a regex:
 
   await build ({
     ... esbuild configuration ...
+
     plugins[vitestCleaner({filter:/*.select.mts/})]
   });
 
