@@ -15,5 +15,5 @@ module.exports = {
     rules: {
         quotes: [2, 'single', {'avoidEscape': true}]
     },
-    ignorePatterns: ['dist/**/*', 'node_modules/**/*']
+    ignorePatterns: ['dist', 'node_modules']
 }
